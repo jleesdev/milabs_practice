@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>운동 스케쥴</title>
+  <style>
+    body {
+      text-align: center;
+    }
+    li {
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <h1>미랩스 인원 목록</h1>
+  <input type="text" id="subject" autofocus>
+  <button onclick="addExercise();">추가</button> 
+  <ul id="exercise_list">
+  </ul>
+
+  <script>
+    function addExercise () {
+      let workout = document.querySelector("#subject");
+      if (workout.value !== "") {
+        let new_li = document.createElement("li");
+        let new_text = document.createTextNode(workout.value);
+        new_li.appendChild(new_text);
+        new_li.setAttribute("class", "exercise_item");
+        document.querySelector("#exercise_list").appendChild(new_li);
+        workout.value = "";
+        let items = document.querySelectorAll(".exercise_item");
+        for (i=0; i<items.length; i++) {
+          items[i].addEventListener("click", function (){
+            if (this.parentNode) {
+              this.parentNode.removeChild(this);
+            }
+          })
+        
+        }
+      } else {
+        alert("뭐라도 쓰셔야쥬~");
+      }
+    };
+  </script>
+</body>
+</html>
